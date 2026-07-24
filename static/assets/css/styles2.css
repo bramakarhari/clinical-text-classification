@@ -1,0 +1,102 @@
+/* General Body Styling */
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: #f0f2f5;
+    color: #444444;
+}
+
+/* Navbar Customization */
+.navbar {
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-bottom: 2px solid #ff4757;
+}
+
+.navbar a.nav-link {
+    color: #ffffff;
+    font-weight: 600;
+    padding: 10px;
+    transition: color 0.3s ease;
+}
+
+.navbar a.nav-link:hover {
+    color: #ff4757;
+}
+
+/* Hero Section Styling */
+.page-header {
+    background-color: #283048;
+    padding: 60px 0;
+    text-align: center;
+    color: white;
+}
+
+.page-header h2 {
+    font-size: 36px;
+    color: #ff4757;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Styling */
+.btn-custom {
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: #ff6b81;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+footer a {
+    color: #ff4757;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ff6b81;
+}
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    background-color: #ff4757;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.4s ease;
+}
+
+.back-to-top:hover {
+    background-color: #ff6b81;
+    background: linear-gradient(100deg, #2E3192 ,#12c7a996);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .page-header h2 {
+        font-size: 28px;
+    }
+
+    footer {
+        font-size: 12px;
+    }
+}

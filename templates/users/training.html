@@ -1,0 +1,122 @@
+{% extends 'users/userbase.html' %}
+{% load static %}
+{% block contents %}
+
+<!-- Section for Model Training Results -->
+<center>
+    <section class="about full-screen d-lg-flex justify-content-center align-items-center" id="about">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Left column with accuracy and classification report -->
+                <div class="col-lg-7 col-md-12 col-12 d-flex align-items-center">
+                    <div class="training-results shadow p-4 rounded bg-light text-center mx-auto">
+                        <h2 class="mb-4" style="color: #4CAF50;">Model Training Results</h2>
+                        
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" style="text-align:center;">Metric</th>
+                                    <th scope="col" style="text-align:center;">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-weight-bold">Training Accuracy</td>
+                                    <td>{{ train_acc }}</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                        
+                        <h3 class="mt-4" style="color: #3F51B5;">Classification Report:</h3>
+                        <div class="classification-report-card bg-white p-3 rounded border shadow mt-3">
+                            <pre style="white-space: pre-wrap; word-wrap: break-word;">{{ classification_report }}</pre>
+                            
+
+                        </div>
+                        <img src="{{ confusion_matrix_img }}" alt="Confusion Matrix" style="width: 1500px; height: 800px;" />
+
+                        
+
+                    </div>
+                </div>
+    
+                
+               
+            </div>
+        </div>
+    </section>
+    
+</center>
+<style>
+    /* Additional CSS Styles */
+    .about {
+        background: linear-gradient(to right, #005f73, #78ffd6);
+        color: #fff;
+        padding: 50px 0;
+    }
+
+    .training-results {
+        background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+        color: #333;
+    }
+
+    .table {
+        margin-top: 20px;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .thead-dark th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .classification-report-card {
+        max-height: 300px;
+        overflow-y: auto;
+        margin-top: 20px;
+        border-radius: 10px;
+        padding: 20px; /* Added padding for a card-like effect */
+        background-color: #f8f9fa; /* Light background for card */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #023047;
+        color: white;
+        border-radius: 50%;
+        padding: 15px;
+        font-size: 18px;
+        display: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .back-to-top:hover {
+        background-color: #ffb703;
+        transform: scale(1.1);
+    }
+</style>
+
+<script>
+    // Back to top button functionality
+    window.addEventListener('scroll', function () {
+        const backToTopBtn = document.getElementById('backToTop');
+        if (window.scrollY > 200) {
+            backToTopBtn.style.display = 'block';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+
+    document.getElementById('backToTop').addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'admins/adminbase.html' %}
+{% block contents %}
+
+<style>
+    /* Centering container at the top of the page */
+    .table-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px; /* Space between the top and the table */
+    }
+
+    /* Style the table */
+    table {
+        width: 80%; /* Adjust the table width */
+        border-collapse: collapse;
+        background-color: #fff;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        font-size: 1rem; /* Ensure text size is visible */
+        color: #333; /* Darker color for better visibility */
+    }
+
+    th, td {
+        border: 1px solid #ddd; /* Light borders for table */
+        padding: 10px; /* Slightly increased padding for more space */
+        text-align: center;
+    }
+
+    th {
+        background-color: #f2f2f2; /* Light background for table header */
+        font-weight: bold;
+        color: #333; /* Dark header text */
+    }
+
+    td {
+        vertical-align: middle; /* Vertically center the text */
+        color: #555; /* Darker color for table content */
+    }
+
+    h2 {
+        text-align: center;
+        margin: 20px;
+        color: #444; /* Darker header color for better readability */
+    }
+
+    .btn-primary {
+        padding: 5px 10px;
+        font-size: 0.9rem;
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .badge-success {
+        background-color: #28a745;
+        color: white;
+        padding: 5px 10px;
+        font-size: 0.9rem;
+    }
+
+    .text-warning {
+        color: #ffc107; /* Gold warning text for better visibility */
+    }
+
+    .text-success {
+        color: #28a745; /* Green success text */
+    }
+</style>
+
+<section>
+    <h2 style='margin:50px;color:#002D62'>View Registered User Details</h2>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Login ID</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Locality</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.loginid }}</td>
+                    <td>{{ i.mobile }}</td>
+                    <td>{{ i.email }}</td>
+                    <td>{{ i.locality }}</td>
+                    <td class="{% if i.status == 'waiting' %}text-warning{% else %}text-success{% endif %}">
+                        {{ i.status | capfirst }}
+                    </td>
+                    <td>
+                        {% if i.status == 'waiting' %}
+                        <a class="btn btn-primary btn-sm" href="/ActivaUsers/?uid={{ i.id }}">Activate</a>
+                        {% else %}
+                        <td> <span class="badge badge-success p-2">Activated</span><a class="btn-link" href="/DeleteUsers/?uid={{ i.id }}"
+                            style="color:RED">Delete</a></td>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock %}

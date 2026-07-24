@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contents %}
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light gray background */
+    }
+
+    .registration-form {
+        background-color: #ffffff; /* White background for the form */
+        border-radius: 8px; /* Rounded corners */
+        padding: 10px 25px; /* Reduced top and bottom padding for a more compact form */
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow for more depth */
+        max-width: 400px; /* Reduced maximum width of the form */
+        margin: auto; /* Center the form horizontally */
+        margin-top:10px;
+    }
+
+    h1 {
+        color: #5a3e36; /* Dark brown color for the header */
+        font-size: 1.5rem; /* Reduced font size for the header */
+    }
+
+    .table {
+        width: 100%; /* Make the table full width */
+        margin: 0 auto; /* Center the table within the form */
+        border-collapse: collapse; /* Collapse borders for a cleaner look */
+        
+        
+    }
+
+    .table td {
+        padding: 5px; /* Reduced padding for table cells */
+        
+        vertical-align: middle; /* Align text vertically center */
+        /* Light gray border for table cells */
+    }
+
+    .table label {
+        font-weight: bold; /* Bold labels */
+        color: #333; /* Dark gray text for better readability */
+        font-size: 0.9rem; /* Smaller font size for labels */
+    }
+
+    /* Input styles */
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    textarea {
+        width: 100%; /* Full width for input fields */
+        padding: 8px; /* Reduced padding inside input fields */
+        border: 1px solid #ced4da; /* Light border */
+        border-radius: 5px; /* Rounded corners */
+        transition: border-color 0.3s, box-shadow 0.3s; /* Transition for effects */
+        font-size: 0.9rem; /* Smaller font size for inputs */
+    }
+
+    input[type="text"]:hover,
+    input[type="password"]:hover,
+    input[type="email"]:hover,
+    input[type="tel"]:hover,
+    input[type="number"]:hover,
+    textarea:hover {
+        border-color: #80bdff; /* Change border color on hover */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Light blue shadow on hover */
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    input[type="number"]:focus,
+    textarea:focus {
+        border-color: #007bff; /* Primary color on focus */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Light blue shadow on focus */
+        outline: none; /* Remove default outline */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Primary button color */
+        border: none; /* No border */
+        padding: 10px; /* Reduced padding for button */
+        font-size: 0.9rem; /* Smaller button text size */
+        border-radius: 5px; /* Rounded corners for button */
+        transition: background-color 0.3s; /* Transition for button hover */
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+    }
+
+    .text-danger {
+        color: red; /* Red color for error messages */
+        margin-top: 10px; /* Space above error messages */
+        font-size: 0.9rem; /* Smaller font size for error messages */
+    }
+</style>
+
+<section class="bg-light py-5">
+    <div class="container">
+        <form action="{% url 'UserRegisterActions' %}" method="POST" class="registration-form">
+            <h1 class="h3 text-center font-weight-bold">User Registration Form</h1>
+
+            {% csrf_token %}
+            <table class="table table-borderless">
+                <tr>
+                    <td><label for="name">User Name</label></td>
+                    <td>{{ form.name }}</td>
+                </tr>
+                <tr>
+                    <td><label for="loginid">Login ID</label></td>
+                    <td>{{ form.loginid }}</td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password</label></td>
+                    <td>{{ form.password }}</td>
+                </tr>
+                <tr>
+                    <td><label for="mobile">Mobile</label></td>
+                    <td>{{ form.mobile }}</td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email</label></td>
+                    <td>{{ form.email }}</td>
+                </tr>
+                <tr>
+                    <td><label for="locality">Locality</label></td>
+                    <td>{{ form.locality }}</td>
+                </tr>
+                <tr>
+                    <td><label for="address">Address</label></td>
+                    <td>{{ form.address }}</td>
+                </tr>
+                <tr>
+                    <td><label for="city">City</label></td>
+                    <td>{{ form.city }}</td>
+                </tr>
+                <tr>
+                    <td><label for="state">State</label></td>
+                    <td>{{ form.state }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{ form.status }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button class="btn btn-primary btn-block text-white" type="submit">Register</button>
+                    </td>
+                </tr>
+                {% if messages %}
+                <tr>
+                    <td colspan="2" class="text-danger">
+                        {% for message in messages %}
+                            {{ message }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endif %}
+            </table>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

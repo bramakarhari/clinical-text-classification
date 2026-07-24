@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinical ML project</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #007991, #78ffd6);
+            color: #333;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #005f73;
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .navbar-brand:hover {
+            color: #ffb703;
+        }
+
+        .navbar-nav {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+        }
+
+        .navbar-nav .nav-item {
+            margin-left: 20px;
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffb703;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 50px;
+            animation: slideIn 1s ease;
+        }
+
+        .page-header h2 {
+            color: #fff;
+            background: rgba(0, 95, 115, 0.9);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #023047;
+            color: white;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 18px;
+            display: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-to-top:hover {
+            background-color: #ffb703;
+            transform: scale(1.1);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-nav .nav-item {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand">Clinical Text Classification Using Sequential 
+            Forward Selection </div>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="{% url 'UserHome' %}" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'DatasetView' %}" class="nav-link">Dataset View</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'training' %}" class="nav-link">Training</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'prediction' %}" class="nav-link">Prediction</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'index' %}" class="nav-link">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2>Clinical Text Classification Using Sequential 
+            Forward Selection </h2>
+    </div>
+
+    <!-- Page Content (Dynamically inserted) -->
+     {% block contents %}
+        <!-- Dataset Table (Sample Data Example) -->
+        <table class="dataset-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Text</th>
+                    <th>Prediction</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>I feel lost and hopeless.</td>
+                    <td>Positive</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>I had a good day today!</td>
+                    <td>Negative</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Life seems pointless sometimes.</td>
+                    <td>Positive</td>
+                </tr>
+            </tbody>
+        </table>
+    {% endblock %}
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fa fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // Back to top button functionality
+        window.addEventListener('scroll', function () {
+            const backToTopBtn = document.getElementById('backToTop');
+            if (window.scrollY > 200) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        document.getElementById('backToTop').addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>
